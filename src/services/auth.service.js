@@ -9,11 +9,14 @@ export default class AuthService {
       throw { err_status: 400, message: "Missing required fields" };
 
     const { rowCount } = await pool.query(
-      "SELECT * FROM users WHERE email = $1",
-      [email]
+      "SELECT * FROM users WHERE email = $1 OR username = $2",
+      [email, username]
     );
     if (rowCount > 0)
-      throw { err_status: 400, message: "Email is already in use" };
+      throw {
+        err_status: 409,
+        message: "Email or username are already in use",
+      };
 
     const hashedPassword = await BcryptHash.hashPassword(password);
 
@@ -39,11 +42,11 @@ export default class AuthService {
       [email]
     );
 
-    if (rowCount === 0)
-      throw { err_status: 400, message: "Invalid email or password" };
-
-    if (!(await BcryptHash.comparePassword(password, user[0].password)))
-      throw { err_status: 400, message: "Invalid email or password" };
+    if (
+      rowCount === 0 ||
+      !(await BcryptHash.comparePassword(password, user[0].password))
+    )
+      throw { err_status: 401, message: "Invalid email or password" };
 
     return {
       token: JWTService.createToken({
