@@ -1,6 +1,6 @@
 import JWTService from "../services/jwt.service.js";
 
-export const authMiddleware = (req, res, next) => {
+const authMiddleware = (req, res, next) => {
   try {
     if (!req.headers.authorization)
       throw { err_status: 401, message: "Unauthorized" };
@@ -17,3 +17,5 @@ export const authMiddleware = (req, res, next) => {
       .send(error.message || "Internal Server Error");
   }
 };
+
+export default authMiddleware;

@@ -6,6 +6,6 @@ export default class BcryptHash {
   }
 
   static async comparePassword(password, hashedPassword) {
-    return password ? await bcrypt.compare(password, hashedPassword) : null;
+    return password ? await bcrypt.compare(password, hashedPassword) : false;
   }
 }
