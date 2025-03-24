@@ -37,24 +37,24 @@ export default class AuthService {
     if (!email || !password)
       throw { err_status: 400, message: "Missing required fields" };
 
-    const { rows: user, rowCount } = await pool.query(
+    const { rows: foundUser, rowCount } = await pool.query(
       "SELECT id, username, email, password FROM users WHERE email = $1",
       [email]
     );
 
     if (
       rowCount === 0 ||
-      !(await BcryptHash.comparePassword(password, user[0].password))
+      !(await BcryptHash.comparePassword(password, foundUser[0].password))
     )
       throw { err_status: 401, message: "Invalid email or password" };
 
     return {
       token: JWTService.createToken({
-        id: user[0].id,
-        username: user[0].username,
-        email: user[0].email,
+        id: foundUser[0].id,
+        username: foundUser[0].username,
+        email: foundUser[0].email,
       }),
-      user: user[0],
+      user: foundUser[0],
     };
   }
 }

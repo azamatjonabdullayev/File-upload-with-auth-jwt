@@ -1,13 +1,13 @@
 import "dotenv/config.js";
 import express from "express";
-import allRoutes from "./routes/all.routes.js";
+import getAllRoutes from "./routes/all.routes.js";
 import pool from "./config/db.js";
 
 const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use("/api", allRoutes());
+app.use("/api", getAllRoutes());
 app.use("*", (_, res) => res.status(404).send("PAGE NOT FOUND"));
 
 const PORT = process.env.PORT || 8080;

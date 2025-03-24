@@ -1,3 +1,5 @@
-const allRoutes = () => [];
+import authRoutes from "./auth.routes.js";
 
-export default allRoutes;
+const getAllRoutes = () => [authRoutes];
+
+export default getAllRoutes;
