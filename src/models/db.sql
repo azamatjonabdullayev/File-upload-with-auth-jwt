@@ -8,6 +8,7 @@ CREATE TABLE IF NOT EXISTS users(
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+
 CREATE TABLE IF NOT EXISTS uploaded_files(
   id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
   name VARCHAR(255),
@@ -16,6 +17,7 @@ CREATE TABLE IF NOT EXISTS uploaded_files(
   size BIGINT,
   uploaded_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
 
 
 -- User qo'shish
@@ -50,29 +52,20 @@ INSERT INTO users (id, username, email, password, created_at) VALUES
 
 
 -- File qo'shish
-INSERT INTO uploaded_files (id, name, filepath, type, size, uploaded_at) VALUES
-(gen_random_uuid(), 'file_1.txt', '/uploads/file_1.txt', 'image/png', 104857, NOW()),
-(gen_random_uuid(), 'file_2.txt', '/uploads/file_2.txt', 'application/pdf', 98234, NOW()),
-(gen_random_uuid(), 'file_3.txt', '/uploads/file_3.txt', 'text/plain', 76342, NOW()),
-(gen_random_uuid(), 'file_4.txt', '/uploads/file_4.txt', 'image/png', 184221, NOW()),
-(gen_random_uuid(), 'file_5.txt', '/uploads/file_5.txt', 'application/pdf', 54124, NOW()),
-(gen_random_uuid(), 'file_6.txt', '/uploads/file_6.txt', 'text/plain', 144422, NOW()),
-(gen_random_uuid(), 'file_7.txt', '/uploads/file_7.txt', 'image/png', 93322, NOW()),
-(gen_random_uuid(), 'file_8.txt', '/uploads/file_8.txt', 'application/pdf', 60213, NOW()),
-(gen_random_uuid(), 'file_9.txt', '/uploads/file_9.txt', 'text/plain', 124433, NOW()),
-(gen_random_uuid(), 'file_10.txt', '/uploads/file_10.txt', 'image/png', 75523, NOW()),
-(gen_random_uuid(), 'file_11.txt', '/uploads/file_11.txt', 'application/pdf', 176123, NOW()),
-(gen_random_uuid(), 'file_12.txt', '/uploads/file_12.txt', 'text/plain', 99442, NOW()),
-(gen_random_uuid(), 'file_13.txt', '/uploads/file_13.txt', 'image/png', 134543, NOW()),
-(gen_random_uuid(), 'file_14.txt', '/uploads/file_14.txt', 'application/pdf', 86521, NOW()),
-(gen_random_uuid(), 'file_15.txt', '/uploads/file_15.txt', 'text/plain', 74213, NOW()),
-(gen_random_uuid(), 'file_16.txt', '/uploads/file_16.txt', 'image/png', 102345, NOW()),
-(gen_random_uuid(), 'file_17.txt', '/uploads/file_17.txt', 'application/pdf', 50312, NOW()),
-(gen_random_uuid(), 'file_18.txt', '/uploads/file_18.txt', 'text/plain', 134543, NOW()),
-(gen_random_uuid(), 'file_19.txt', '/uploads/file_19.txt', 'image/png', 76432, NOW()),
-(gen_random_uuid(), 'file_20.txt', '/uploads/file_20.txt', 'application/pdf', 94212, NOW()),
-(gen_random_uuid(), 'file_21.txt', '/uploads/file_21.txt', 'text/plain', 120432, NOW()),
-(gen_random_uuid(), 'file_22.txt', '/uploads/file_22.txt', 'image/png', 65721, NOW()),
-(gen_random_uuid(), 'file_23.txt', '/uploads/file_23.txt', 'application/pdf', 80421, NOW()),
-(gen_random_uuid(), 'file_24.txt', '/uploads/file_24.txt', 'text/plain', 91023, NOW()),
-(gen_random_uuid(), 'file_25.txt', '/uploads/file_25.txt', 'image/png', 100324, NOW());
+INSERT INTO uploaded_files (name, filepath, type, size)
+VALUES
+('report_q1.pdf', '/uploads/report_q1.pdf', 'pdf', 254000),
+('profile_photo.jpg', '/uploads/profile_photo.jpg', 'jpg', 120456),
+('presentation.pptx', '/uploads/presentation.pptx', 'pptx', 803500),
+('backup_2024_03_01.zip', '/uploads/backup_2024_03_01.zip', 'zip', 15234000),
+('invoice_145.csv', '/uploads/invoice_145.csv', 'csv', 2200),
+('meeting_audio.mp3', '/uploads/meeting_audio.mp3', 'mp3', 2540000),
+('contract.docx', '/uploads/contract.docx', 'docx', 54000),
+('logo.svg', '/uploads/logo.svg', 'svg', 20480),
+('screenshot.png', '/uploads/screenshot.png', 'png', 104600),
+('resume.pdf', '/uploads/resume.pdf', 'pdf', 93000),
+('financial_report.xlsx', '/uploads/financial_report.xlsx', 'xlsx', 455000),
+('video_promo.mp4', '/uploads/video_promo.mp4', 'mp4', 4500000),
+('design_mockup.psd', '/uploads/design_mockup.psd', 'psd', 5304000),
+('manual.pdf', '/uploads/manual.pdf', 'pdf', 180000),
+('test_script.py', '/uploads/test_script.py', 'py', 6400);
